@@ -47,5 +47,29 @@ router.post('/', (req, res) => {
     })
 })
 
+router.put('/:id', (req, res) => {
+
+  let theIdToUpdate = req.params.id;
+
+  let isComplete = req.body.complete;
+
+  let sqlText = `
+    UPDATE "todo"
+      SET "complete"=$1
+      WHERE "id"=$2;
+  `
+  let sqlValues = [isComplete, theIdToUpdate];
+
+  pool.query(sqlText, sqlValues)
+    .then((dbRes) => {
+      res.sendStatus(200);
+    })
+    .catch((dbErr) => {
+      console.log('PUT /todo/:id fail:', dbErr);
+      res.sendStatus(500);
+    })
+
+})
+
 
 module.exports = router;
