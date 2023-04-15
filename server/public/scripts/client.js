@@ -16,11 +16,16 @@ function renderList() {
         for (let item of todoList) {
             if (item.complete === 'Not Complete') {
                 $('#list-container').append(`
-                <li data-id="${item.id}">${item.task}: <button id="update-btn">Complete?</button></li>
+                <li data-id="${item.id}">
+                ${item.task}: 
+                <button id="update-btn">Complete?</button>
+                
+                </li>
                 `);
             } else {
                 $('#list-container').append(`
-                <li data-id="${item.id}">${item.task}: ${item.complete}</li>
+                <li data-id="${item.id}">
+                ${item.task}: ${item.complete}</li>
                 `);
             }
 
