@@ -1,9 +1,7 @@
-console.log('Hello JS');
 
 $(document).ready(onReady);
 
 function onReady() {
-    console.log('Hello JQ');
     $('#add-btn').on('click', addToList);
     renderList();
 }
