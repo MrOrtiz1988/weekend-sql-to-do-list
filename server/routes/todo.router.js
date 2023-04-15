@@ -71,5 +71,26 @@ router.put('/:id', (req, res) => {
 
 })
 
+router.delete('/:id', (req, res) => {
+
+  let theIdToDelete = req.params.id;
+
+  let sqlText = `
+    DELETE FROM "todo"
+      WHERE "id"=$1;
+  `;
+  let sqlValues = [theIdToDelete];
+
+  pool.query(sqlText, sqlValues)
+    .then((dbRes) => {
+      // let the client know that the delete worked!
+      res.sendStatus(200); //  👈 200 means 'OK'
+    })
+    .catch((dbErr) => {
+      console.log('delete /todo error:', dbErr);
+      // let the client know that some shit broke!
+      res.sendStatus(500);
+    })
+})
 
 module.exports = router;

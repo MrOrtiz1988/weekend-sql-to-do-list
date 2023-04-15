@@ -3,7 +3,8 @@ $(document).ready(onReady);
 
 function onReady() {
     $('#add-btn').on('click', addToList);
-    $('#list-container').on('click', '#update-btn', updateToComplete)
+    $('#list-container').on('click', '#update-btn', updateToComplete);
+    $('#list-container').on('click', '#delete-btn', deleteTask);
     renderList();
 }
 
@@ -19,13 +20,15 @@ function renderList() {
                 <li data-id="${item.id}">
                 ${item.task}: 
                 <button id="update-btn">Complete?</button>
-                
+                <button id="delete-btn">Remove</button>
                 </li>
                 `);
             } else {
                 $('#list-container').append(`
                 <li data-id="${item.id}">
-                ${item.task}: ${item.complete}</li>
+                ${item.task}: ${item.complete}
+                <button id="delete-btn">Remove</button>
+                </li>
                 `);
             }
 
@@ -69,5 +72,18 @@ function updateToComplete() {
         renderList();
     }).catch(function (error) {
         console.log('updateToComplete fail:', error);
+    })
+}
+
+function deleteTask() {
+    let idToDelete = $(this).parent().data('id');
+
+    $.ajax({
+        method: 'DELETE',
+        url: `/todo/${idToDelete}`
+    }).then(function (response) {
+        renderList();
+    }).catch(function (error) {
+        alert('something broke in deleteTask');
     })
 }
