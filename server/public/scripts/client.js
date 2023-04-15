@@ -4,6 +4,7 @@ $(document).ready(onReady);
 
 function onReady() {
     console.log('Hello JQ');
+    $('#add-btn').on('click', addToList);
     renderList();
 }
 
@@ -25,5 +26,28 @@ function renderList() {
             }
 
         }
+    }).catch(function (error) {
+        alert('something broke in renderList');
+    })
+}
+
+function addToList(event) {
+    event.preventDefault();
+
+    let newTask = {
+        task: $('#task-in').val(),
+        complete: 'Not Complete'
+    }
+
+    $('#task-in').val('');
+
+    $.ajax({
+        method: 'POST',
+        url: '/todo',
+        data: newTask
+    }).then(function (response) {
+        renderList();
+    }).catch(function (error) {
+        alert('something broke in addToList');
     })
 }

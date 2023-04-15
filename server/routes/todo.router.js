@@ -22,5 +22,30 @@ router.get('/', function (req, res) {
     })
 });
 
+router.post('/', (req, res) => {
+  console.log('POST /todo');
+
+  let newTask = req.body.task;
+  let complete = req.body.complete;
+
+  let sqlText = `
+    INSERT INTO "todo"
+      ("task", "complete")
+      VALUES
+      ($1, $2);
+  `;
+  let sqlValues = [newTask, complete];
+
+  pool.query(sqlText, sqlValues)
+    .then((dbRes) => {
+
+      res.sendStatus(201);
+    })
+    .catch((dbErr) => {
+      console.log('POST /todo error:', dbErr);
+      res.sendStatus(500);
+    })
+})
+
 
 module.exports = router;
