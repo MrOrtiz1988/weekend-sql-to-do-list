@@ -9,6 +9,7 @@ function onReady() {
     renderList();
 }
 
+//renderList gets data from the database and puts it on the DOM
 function renderList() {
     $.ajax({
         method: 'GET',
@@ -41,11 +42,13 @@ function renderList() {
     })
 }
 
+//addToList runs on the add button's click and send it to the database to add it to the table.
 function addToList(event) {
     event.preventDefault();
 
     let newTask = {
         task: $('#task-in').val(),
+        //Not Complete will always be the default upon task creation
         complete: 'Not Complete'
     }
 
@@ -62,6 +65,7 @@ function addToList(event) {
     })
 }
 
+//updateToComplete updates the value from not complete to complete in the database
 function updateToComplete() {
     let idToUpdate = $(this).parent().data('id');
 
@@ -78,6 +82,7 @@ function updateToComplete() {
     })
 }
 
+//deleteTask removes the <li> that was clicked from the database
 function deleteTask() {
     let idToDelete = $(this).parent().data('id');
 

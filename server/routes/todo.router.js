@@ -5,8 +5,7 @@ const pool = require('../modules/pool');
 
 router.get('/', function (req, res) {
   console.log('GET /todo');
-  // Write a SQL query that will select the data we desire
-  // when we run it on our database:
+
   let sqlText = 'SELECT * FROM "todo";';
 
   // Send a sql query to our database:
@@ -39,7 +38,7 @@ router.post('/', (req, res) => {
   pool.query(sqlText, sqlValues)
     .then((dbRes) => {
 
-      res.sendStatus(201);
+      res.sendStatus(201); //  👈 200 means 'Created'
     })
     .catch((dbErr) => {
       console.log('POST /todo error:', dbErr);
@@ -62,7 +61,7 @@ router.put('/:id', (req, res) => {
 
   pool.query(sqlText, sqlValues)
     .then((dbRes) => {
-      res.sendStatus(200);
+      res.sendStatus(200); //  👈 200 means 'OK'
     })
     .catch((dbErr) => {
       console.log('PUT /todo/:id fail:', dbErr);
@@ -83,12 +82,12 @@ router.delete('/:id', (req, res) => {
 
   pool.query(sqlText, sqlValues)
     .then((dbRes) => {
-      // let the client know that the delete worked!
+
       res.sendStatus(200); //  👈 200 means 'OK'
     })
     .catch((dbErr) => {
       console.log('delete /todo error:', dbErr);
-      // let the client know that some shit broke!
+
       res.sendStatus(500);
     })
 })

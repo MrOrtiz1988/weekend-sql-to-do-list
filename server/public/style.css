@@ -31,6 +31,10 @@ h1 {
     margin-top: 50px;
 }
 
+#task-complete {
+    color: greenyellow;
+}
+
 ul {
     list-style-type: none;
 }
