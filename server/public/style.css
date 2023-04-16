@@ -1,0 +1,36 @@
+body {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: 200;
+    color: white;
+    text-align: center;
+    background: rgb(2, 0, 36);
+    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 26%, rgba(0, 212, 255, 1) 96%);
+}
+
+header {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+h1 {
+    font-size: 50px;
+}
+
+.form-section {
+    width: 50%;
+    text-align: center;
+    color: black;
+}
+
+.list-section {
+    margin-top: 50px;
+    font-size: 30px;
+}
+
+.completed-tasks {
+    margin-top: 50px;
+}
+
+ul {
+    list-style-type: none;
+}

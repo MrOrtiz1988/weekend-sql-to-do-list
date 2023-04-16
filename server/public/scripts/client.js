@@ -5,6 +5,7 @@ function onReady() {
     $('#add-btn').on('click', addToList);
     $('#list-container').on('click', '#update-btn', updateToComplete);
     $('#list-container').on('click', '#delete-btn', deleteTask);
+    $('#task-complete').on('click', '#delete-btn', deleteTask);
     renderList();
 }
 
@@ -14,20 +15,22 @@ function renderList() {
         url: '/todo'
     }).then(function (todoList) {
         $('#list-container').empty();
+        $('#task-complete').empty('');
         for (let item of todoList) {
             if (item.complete === 'Not Complete') {
                 $('#list-container').append(`
                 <li data-id="${item.id}">
-                ${item.task}: 
-                <button id="update-btn">Complete?</button>
-                <button id="delete-btn">Remove</button>
+                <button class="btn btn-outline-success" id="update-btn">✅</button>
+                ${item.task} 
+                <button class="btn btn-outline-warning" id="delete-btn">❌</button>
                 </li>
                 `);
             } else {
-                $('#list-container').append(`
+                $('#task-complete').append(`
                 <li data-id="${item.id}">
-                ${item.task}: ${item.complete}
-                <button id="delete-btn">Remove</button>
+                ✅
+                ${item.task} 
+                <button class="btn btn-outline-warning" id="delete-btn">❌</button>
                 </li>
                 `);
             }
