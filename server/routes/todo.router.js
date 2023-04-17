@@ -38,7 +38,7 @@ router.post('/', (req, res) => {
   pool.query(sqlText, sqlValues)
     .then((dbRes) => {
 
-      res.sendStatus(201); //  👈 200 means 'Created'
+      res.sendStatus(201); //  👈 201 means 'Created'
     })
     .catch((dbErr) => {
       console.log('POST /todo error:', dbErr);
